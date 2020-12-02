@@ -1,0 +1,70 @@
+{
+    "name": "@eigenspace/react-test-utils",
+    "version": "1.0.0",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/eigen-space/react-test-utils"
+    },
+    "scripts": {
+        "build:package": "tsc && yarn copy:assets",
+        "copy:assets": "node dev/scripts/copy-assets.js",
+        "lint:code": "eslint --ext .js,.ts",
+        "lint:fix": "yarn lint:code --fix",
+        "lint:markdown": "node ./node_modules/@eigenspace/codestyle/scripts/markdown-lint.js",
+        "lint": "yarn lint:code . && yarn lint:markdown",
+        "test": "jest --passWithNoTests",
+        "test:ci": "yarn test --ci --coverage",
+        "deploy:publish": "node node_modules/@eigenspace/helper-scripts/scripts/ci/publish",
+        "hooks:pre-push": "yarn build:package && yarn lint && yarn test",
+        "script:update-deps-remote": "npx -p @eigenspace/helper-scripts update-deps"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "yarn hooks:pre-push",
+            "pre-commit": "lint-staged",
+            "commit-msg": "commit-linter --message=COMMIT_MESSAGE"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "yarn lint:fix",
+            "git add"
+        ]
+    },
+    "devDependencies": {
+        "@eigenspace/codestyle": "latest",
+        "@eigenspace/commit-linter": "latest",
+        "@eigenspace/common-types": "0.0.23",
+        "@eigenspace/helper-scripts": "3.0.8",
+        "@eigenspace/jest-screenshot-testing": "0.1.18",
+        "@types/enzyme": "3.10.8",
+        "@types/jest": "26.0.15",
+        "@types/node": "14.14.5",
+        "@types/react": "17.0.0",
+        "@types/react-dom": "17.0.0",
+        "enzyme": "3.8.0",
+        "enzyme-adapter-react-16": "1.15.5",
+        "eslint": "7.9.0",
+        "eslint-plugin-eigenspace-script": "latest",
+        "husky": "2.3.0",
+        "jest": "24.7.1",
+        "jest-styled-components": "6.3.3",
+        "lint-staged": "8.1.7",
+        "react": "16.12.0",
+        "react-dom": "16.12.0",
+        "styled-components": "4.4.1",
+        "ts-jest": "24.0.2",
+        "typescript": "3.8.2",
+        "whatwg-fetch": "3.5.0"
+    },
+    "peerDependencies": {
+        "enzyme": ">= 3.8.0",
+        "enzyme-adapter-react-16": ">= 1.15.5",
+        "jest-styled-components": ">= 6.3.3",
+        "react": ">= 16.3.3",
+        "react-dom": ">= 16.3.3",
+        "styled-components": ">= 4.4.1",
+        "whatwg-fetch": "3.5.0"
+    }
+}

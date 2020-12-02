@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReactTestUtils #boxWrap should set default value, any key in box is undefined 1`] = `"oZxr5m+RPfYdCkrtaIWzPv0icK0="`;
+
+exports[`ReactTestUtils #boxWrap should set defined box value 1`] = `"fjWvti/KglhzmNmQ5/JNodoctz8="`;
